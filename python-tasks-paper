@@ -1,0 +1,99 @@
+SAYLANI IT TRAINING
+ADVANCED PYTHON PROGRAMMING | PRACTICAL EXAMINATION
+Student Name: SHEIKH SAAD ULLAH	Roll Number: 882202
+Duration: 4 hours (suggested)	Total Marks: 150 (10 per task)
+Instructions
+•	Attempt tasks as directed by the instructor. All 15 tasks are provided for assessment; the instructor may select a subset for a timed paper.
+•	Write executable Python 3 code. Use only the Python standard library unless a task explicitly states otherwise.
+•	Use meaningful function/class names, validate inputs, handle edge cases, and avoid hard-coded results.
+•	Submit separate .py files named task_01.py through task_15.py. For file-based tasks, include generated sample data.
+•	Marks per task: correctness 6, edge cases 2, code quality 2.
+Task 01 | Nested Transaction Analyzer
+Concepts: Data structures, sorting, comprehensions
+Problem: Given a list of transaction dictionaries with keys id, customer, category, amount, and status, produce a report containing each customer’s successful spending, top category, and rank by spending. Ignore failed transactions and reject duplicate transaction IDs.
+Requirements: Return a list sorted by spending descending, then customer name ascending. Customers with no successful transactions must appear with total 0. Do not use pandas.
+Sample / expected behavior: Input: [{id:1,customer:"Ali",category:"Food",amount:500,status:"success"},{id:2,customer:"Ali",category:"Travel",amount:200,status:"failed"},{id:3,customer:"Sara",category:"Food",amount:700,status:"success"}]. Output totals: Sara=700, Ali=500.
+
+Task 02 | Longest Valid Window
+Concepts: Sliding window, dictionaries
+Problem: Write longest_unique_window(text) to find the longest contiguous substring with no repeated characters. Return the substring, start index, and length.
+Requirements: Target O(n) time. On equal-length windows, select the earliest. Treat spaces and punctuation as characters.
+Sample / expected behavior: Input: "abcabcbb" -> ("abc", 0, 3); "" -> ("", 0, 0).
+
+Task 03 | Recursive JSON Path Explorer
+Concepts: Recursion, nested lists/dictionaries
+Problem: Implement find_paths(data, target) that recursively searches nested dictionaries and lists and returns all paths whose value equals target.
+Requirements: Use dot notation for dictionary keys and [index] for list positions. Preserve traversal order; do not treat bool True as numeric 1.
+Sample / expected behavior: Input: {"a":[{"x":5},5],"b":{"y":5}}, target=5 -> ["a[0].x", "a[1]", "b.y"].
+
+Task 04 | Dependency Execution Planner
+Concepts: Graphs, sets, algorithms
+Problem: Given tasks and prerequisite pairs (A,B) meaning A must finish before B, return a valid execution order.
+Requirements: Detect cycles and raise ValueError with a clear message. For multiple available tasks, select alphabetically first. Reject unknown task names.
+Sample / expected behavior: Tasks=["build","test","deploy"]; dependencies=[("build","test"),("test","deploy")] -> ["build","test","deploy"].
+
+Task 05 | Expression Validator and Evaluator
+Concepts: Stacks, parsing, exception handling
+Problem: Create a calculator for integer expressions containing +, -, *, /, parentheses, and whitespace. Apply standard operator precedence and parentheses.
+Requirements: Do not use eval(), exec(), or third-party parsers. Handle unary minus, malformed expressions, and division by zero.
+Sample / expected behavior: Input: "-(3 + 2) * 4 + 18 / 3" -> -14.0.
+
+Task 06 | Banking Ledger with OOP
+Concepts: Classes, encapsulation, properties
+Problem: Build Account and Bank classes. Support deposit, withdrawal, transfer, and account statements. Maintain immutable transaction records containing transaction ID, action, amount, and resulting balance.
+Requirements: Reject nonpositive amounts, insufficient funds, and nonexistent accounts. A transfer must be atomic: both balances update or neither does.
+Sample / expected behavior: Account A=1000, B=200; transfer 350 from A to B -> A=650, B=550.
+
+Task 07 | Employee Payroll Engine
+Concepts: Inheritance, polymorphism, abstract classes
+Problem: Define abstract Employee with calculate_pay(). Implement SalariedEmployee, HourlyEmployee, and CommissionEmployee with different pay formulas. Generate a unified payroll summary.
+Requirements: Hourly overtime above 40 hours pays 1.5x. Commission employees receive base + sales*rate. Prevent direct instantiation of Employee.
+Sample / expected behavior: Hourly rate=20, hours=45 -> 950; Commission base=500, sales=4000, rate=.10 -> 900.
+
+Task 08 | Cache Decorator with Expiration
+Concepts: Decorators, closures, functools, time
+Problem: Implement @ttl_cache(seconds) that caches results for repeated positional and keyword arguments and recomputes after expiration. Track cache hits and misses.
+Requirements: Preserve function metadata with functools.wraps. Handle equivalent keyword argument order; document behavior for unhashable inputs. Use time.monotonic().
+Sample / expected behavior: A call with x=2,y=3 followed by y=3,x=2 before expiry should return a cache hit.
+
+Task 09 | Streaming Log Inspector
+Concepts: Generators, iterators, file handling
+Problem: Write a generator read_errors(path) that streams a log file line by line, yielding (line_number, timestamp, message) only for ERROR records. Build summarize_errors() to count errors by date.
+Requirements: Do not load the whole file into memory. Skip malformed lines while tracking their count. Expected format: YYYY-MM-DD HH:MM:SS | LEVEL | message.
+Sample / expected behavior: Input line: 2026-11-07 10:30:00 | ERROR | Connection lost -> (1,"2026-11-07 10:30:00","Connection lost").
+
+Task 10 | CSV Inventory Reconciliation
+Concepts: CSV, file handling, validation
+Problem: Read inventory.csv (sku,name,quantity) and movements.csv (sku,type,units). Apply IN and OUT movements in order, then write updated_inventory.csv and rejected_movements.csv.
+Requirements: Reject unknown SKUs, negative or zero units, invalid movement types, and any OUT causing negative stock. Continue processing after rejected rows.
+Sample / expected behavior: SKU P01 starts at 10; OUT 4, OUT 9, IN 2 -> final 8; second movement rejected.
+
+Task 11 | Multi-File Student Gradebook
+Concepts: File handling, dictionaries, exceptions
+Problem: Merge students.csv (student_id,name) and scores.csv (student_id,subject,marks). Calculate per-student average, grade, and rank; export report.csv.
+Requirements: Marks must be 0–100; reject unknown IDs and duplicate student-subject entries. Grades: A>=85, B>=70, C>=55, D>=40, otherwise F. Rank by average, then ID.
+Sample / expected behavior: Student 101 with marks 90,80,85 -> average 85.0, grade A.
+
+Task 12 | Custom Iterable Range Toolkit
+Concepts: Iterators, generators, dunder methods
+Problem: Create a ReversibleRange(start,stop,step) class supporting iteration, reversed iteration, len(), and membership tests without constructing a list.
+Requirements: Match Python range stop-exclusive semantics for positive and negative nonzero steps. Implement __iter__, __reversed__, __len__, and __contains__.
+Sample / expected behavior: ReversibleRange(2,11,3) -> [2,5,8]; reversed -> [8,5,2]; 5 in object -> True.
+
+Task 13 | Booking Conflict Scheduler
+Concepts: Datetime, sorting, interval algorithms
+Problem: Implement a room booking scheduler. Each booking has room, start datetime, end datetime, and booking ID. Accept bookings only when they do not overlap existing bookings for the same room.
+Requirements: Use datetime objects; reject end<=start and duplicate IDs. Adjacent bookings are allowed. Return conflicts for rejected requests.
+Sample / expected behavior: Room A: 09:00–10:00 and 10:00–11:00 accepted; 09:30–10:30 rejected.
+
+Task 14 | Command-Line Contact Manager
+Concepts: Modules, JSON, CRUD, validation
+Problem: Build a menu-driven CLI contact manager with add, search, update, delete, list, and persistent JSON storage. Each contact has a unique ID, name, phone, and email.
+Requirements: Use separate functions/modules for storage and business logic. Handle missing/corrupt JSON safely without silently deleting existing data. Search names case-insensitively.
+Sample / expected behavior: Add ID=1, name="Ayesha"; restart application; search "aye" -> contact remains available.
+
+Task 15 | Integrated Order Fulfillment System
+Concepts: OOP, composition, files, exceptions, algorithms
+Problem: Design Product, Cart, Order, and Inventory classes. Read a product catalog from JSON, build carts, apply percentage discounts, compute totals, and place orders with stock updates. Persist orders to JSON.
+Requirements: Reject invalid quantities and out-of-stock purchases. Validate all items before changing inventory; roll back if order persistence fails. Generate unique order IDs. Include at least three unit tests using unittest.
+Sample / expected behavior: Catalog: P1 price=100 stock=5; cart P1 x2 with 10% discount -> total 180, stock becomes 3 after successful order.
